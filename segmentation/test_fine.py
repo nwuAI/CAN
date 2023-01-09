@@ -92,20 +92,40 @@ class Solver():
                 volume_prediction = []
                 for i in range(0, len(volume), batch_size):
 
-                    if i <= int(self.args.num_slices * 2 + 1):
-                        image_stack0 = volume[0:int(self.args.num_slices * 2 + 1), :, :][None]
-                        image_stack1 = volume[1:int(self.args.num_slices * 2 + 2), :, :][None]
-                    elif i >= z_ax - int(self.args.num_slices * 2 + 1):
-                        image_stack0 = volume[z_ax - int(self.args.num_slices * 2 + 2):-1, :, :][None]
-                        image_stack1 = volume[z_ax - int(self.args.num_slices * 2 + 1):, :, :][None]
+                    image_2D = volume[i, :, :][np.newaxis, :, :]
+                    image_2D = image_2D.unsqueeze(0)
+
+                    if i <= int(self.args.num_slices * 2):
+                        image_stack01 = volume[0:int(i), :, :][None]
+                        image_stack02 = volume[int(i + 1):int(self.args.num_slices * 2 + 1), :, :][None]
+                        skull_stack01 = skull[0:int(i), :, :][None]
+                        skull_stack02 = skull[int(i + 1):int(self.args.num_slices * 2 + 1), :, :][None]
+                    elif i == int(self.args.num_slices * 2 + 1):
+                        image_stack01 = volume[0:int(i - 1), :, :][None]
+                        image_stack02 = volume[int(i + 1):int(self.args.num_slices * 2 + 1), :, :][None]
+                        skull_stack01 = skull[0:int(i - 1), :, :][None]
+                        skull_stack02 = skull[int(i + 1):int(self.args.num_slices * 2 + 1), :, :][None]
+                    elif i >= 245 and i < 255:
+                        image_stack01 = volume[z_ax - int(self.args.num_slices * 2 + 1):int(i), :, :][None]
+                        image_stack02 = volume[int(i + 1):, :, :][None]
+                        skull_stack01 = skull[z_ax - int(self.args.num_slices * 2 + 1):int(i), :, :][None]
+                        skull_stack02 = skull[int(i + 1):, :, :][None]
+                    elif i == 255:
+                        image_stack01 = volume[z_ax - int(self.args.num_slices * 2 + 1):-1, :, :][None]
+                        image_stack02 = volume[i + 1:, :, :][None]
+                        skull_stack01 = skull[z_ax - int(self.args.num_slices * 2 + 1):-1, :, :][None]
+                        skull_stack02 = skull[i + 1:, :, :][None]
                     else:
-                        image_stack0 = volume[i - self.args.num_slices:i + self.args.num_slices + 1, :, :][None]
-                        image_stack1 = volume[i - self.args.num_slices + 1:i + self.args.num_slices + 2, :, :][None]
+                        image_stack01 = volume[i - self.args.num_slices:i, :, :][None]
+                        image_stack02 = volume[i + 1:i + self.args.num_slices + 1, :, :][None]
+                        skull_stack01 = skull[i - self.args.num_slices:i, :, :][None]
+                        skull_stack02 = skull[i + 1:i + self.args.num_slices + 1, :, :][None]
 
-                    image_3D = torch.cat((image_stack0, image_stack1), dim=0)
+                    image_3D = torch.cat((image_stack01, image_stack02), dim=1)
+                    skull_3D = torch.cat((skull_stack01, skull_stack02), dim=1)
 
-                    outputs = self.model(image_3D)
-                    pred = outputs[0]
+                    outputs = self.model(image_3D, skull_3D, image_2D)
+                    pred = outputs
 
                     _, batch_output = torch.max(pred, dim=1)
                     volume_prediction.append(batch_output)
