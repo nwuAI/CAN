@@ -3,6 +3,7 @@
 ##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import torch.nn as nn
 import torch
+#from .layer import MultiSpectralAttentionLayer
 # # SE block add to U-net
 def conv3x3(in_planes, out_planes, stride=1, bias=False, group=1):
     """3x3 convolution with padding"""
@@ -87,7 +88,15 @@ class SE_Conv_Block(nn.Module):
         out1 = out1 * original_out
 
         att_weight = avg_att + max_att
+        
+        # dctsize=original_out.shape
+        # self.att = MultiSpectralAttentionLayer(dctsize[2], dctsize[1], dctsize[2],  reduction=reduction, freq_sel_method = 'top16')
+        # out2 = out * original_out
+        
+        
         out += out1
+        # out += out2
+        
         residual=self.conv2(residual)
         out += residual
         out = self.relu(out)
