@@ -33,3 +33,7 @@ Enter python train.py to run the code. If you are prompted for no packages, ente
 After training, you can use following commands to validate your model.
 
 test.py, test_coarse.py or test_fine.py.
+
+## Pre-trained Model
+The pre-trained model file is saved in save_model directory. 
+
