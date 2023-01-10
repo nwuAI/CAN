@@ -9,6 +9,11 @@ by Zhan Li, Chunxia Zhang, Yongqin Zhang, Xiaofeng Wang, Xiaolong Ma, Hai Zhang,
 ## Introduction
 Our paper propose a new method named CAN for brain tissue segmentation, which takes full advantage of the skull images to constraint the brain region and fuse 2D and 3D data in MRI.
 
+<div align="center">
+  <img src="figures/framework.png" width="600" />
+</div>
+
+
 ## Citation
 ```
 @article{li2022can,
