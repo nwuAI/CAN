@@ -27,3 +27,4 @@ Our paper propose a new method named CAN for brain tissue segmentation, which ta
 ```
 
 ## Train
+Enter python train.py to run the code. If you are prompted for no packages, enter pip install * * to install dependent packages
