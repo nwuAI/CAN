@@ -30,9 +30,7 @@ Our paper propose a new method named CAN for brain tissue segmentation, which ta
 Enter python train.py to run the code. If you are prompted for no packages, enter pip install * * to install dependent packages
 
 ## Inference
-After training, you can use following commands to validate your model.
-
-test.py, test_coarse.py or test_fine.py.
+After training, you can use the command test.py to validate your model.
 
 ## Pre-trained Model
 The pre-trained model files on Dhcp and MALC are saved in save_model directory. 
