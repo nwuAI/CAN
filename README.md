@@ -35,5 +35,5 @@ After training, you can use following commands to validate your model.
 test.py, test_coarse.py or test_fine.py.
 
 ## Pre-trained Model
-The pre-trained model file is saved in save_model directory. 
+The pre-trained model files on Dhcp and MALC are saved in save_model directory. 
 
