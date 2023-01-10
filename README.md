@@ -25,3 +25,5 @@ Our paper propose a new method named CAN for brain tissue segmentation, which ta
   publisher={Elsevier}
 }
 ```
+
+## Train
