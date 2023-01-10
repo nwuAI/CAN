@@ -76,6 +76,7 @@ class Backbone(nn.Module):
 
         # 单个non-local注意力
         self.sa1 = sa1.NONLocalBlock2D(in_channels=64, inter_channels=64 // 4)
+        # self.sa1 = sa1.NonLocal2d_nowd(in_channels=64, inter_channels=64 // 4)
 
         # 四个编码与解码的拼接，注意这是解码的低层维度上采样之后与编码的特征拼接
         self.up_contact4 = modules.UpCat(64, 64, is_deconv=True)
