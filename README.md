@@ -4,7 +4,7 @@ by Zhan Li, Chunxia Zhang, Yongqin Zhang, Xiaofeng Wang, Xiaolong Ma, Hai Zhang,
 
 **SAIL (Statistic Analysis And Intelligent Learning) Group of NWU**
 
-We provide related codes and configuration files to reproduce the "CAN: Context-assisted full Attention Network for brain tissue segmentation"
+*We provide related codes and configuration files to reproduce the "CAN: Context-assisted full Attention Network for brain tissue segmentation"
 
 ## Introduction
 Our paper propose a new method named CAN for brain tissue segmentation, which takes full advantage of the skull images to constraint the brain region and fuse 2D and 3D data in MRI.
