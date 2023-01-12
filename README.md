@@ -7,7 +7,8 @@ by Zhan Li, Chunxia Zhang, Yongqin Zhang, Xiaofeng Wang, Xiaolong Ma, Hai Zhang,
 * We provide related codes and configuration files to reproduce the "CAN: Context-assisted full Attention Network for brain tissue segmentation"
 
 ## Introduction
-Our paper propose a new method named CAN for brain tissue segmentation, which takes full advantage of the skull images to constraint the brain region and fuse 2D and 3D data in MRI.
+Our paper propose a Context-assisted full Attention Network (CAN) for brain MRI segmentation by integrating 2D and 3D data of MRI. Different from the fully
+symmetric structure U-Net, the CAN takes the current 2D slice, its 3D contextual skull slices and 3D contextual brain slices as the input, which are further encoded by the DenseNet and decoded by our constructed full attention network.
 
 <div align="center">
   <img src="figures/framework.png" width="600" />
