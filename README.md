@@ -34,5 +34,5 @@ Enter python train.py to run the code. If you are prompted for no packages, ente
 After training, you can use the python test.py to validate your model.
 
 ## Pre-trained Model
-The pre-trained model files on Dhcp and MALC are saved in save_model directory. 
+The pre-trained model files on Dhcp and MALC are saved in the save_model directory. 
 
